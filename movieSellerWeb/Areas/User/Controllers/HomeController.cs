@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using movieSellerWeb.Models;
+using movieSeller.Models.Models;
 using System.Diagnostics;
 
-namespace movieSellerWeb.Controllers
+namespace movieSellerWeb.Areas.User.Controllers
 {
+    [Area("User")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
