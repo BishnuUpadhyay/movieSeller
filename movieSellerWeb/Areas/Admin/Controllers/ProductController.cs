@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using movieSeller.DataAccess.Repository;
 using movieSeller.DataAccess.Repository.IRepository;
 using movieSeller.Models.Models;
@@ -16,10 +17,18 @@ namespace movieSellerWeb.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Product> ProductList = _UnitOfWork.Product.GetAll().ToList();
+
             return View(ProductList);
         }
         public IActionResult Create()
         {
+            IEnumerable<SelectListItem> CategoryList = _UnitOfWork.Category
+            .GetAll().Select(u => new SelectListItem
+              {
+                 Text = u.Name,
+                 Value = u.Id.ToString()
+               });
+            ViewBag.CategoryList = CategoryList;
             return View();
         }
         [HttpPost]

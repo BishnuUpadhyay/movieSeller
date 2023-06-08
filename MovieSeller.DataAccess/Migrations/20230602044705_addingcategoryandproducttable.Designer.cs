@@ -11,8 +11,8 @@ using movieSeller.DataAccess.Data;
 namespace movieSeller.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230601053121_Adding_Product_To_DB")]
-    partial class Adding_Product_To_DB
+    [Migration("20230602044705_addingcategoryandproducttable")]
+    partial class addingcategoryandproducttable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,11 +83,18 @@ namespace movieSeller.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -109,6 +116,8 @@ namespace movieSeller.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
 
                     b.HasData(
@@ -116,8 +125,10 @@ namespace movieSeller.DataAccess.Migrations
                         {
                             Id = 1,
                             Author = "Billy",
+                            CategoryId = 3,
                             Description = "Movies number 1",
                             ISBN = "121321231d",
+                            ImageURL = "",
                             ListPrice = 99.0,
                             Price = 90.0,
                             Price100 = 80.0,
@@ -128,8 +139,10 @@ namespace movieSeller.DataAccess.Migrations
                         {
                             Id = 2,
                             Author = "SomeOnr",
+                            CategoryId = 3,
                             Description = "Movies number 2",
                             ISBN = "121321231d",
+                            ImageURL = "",
                             ListPrice = 109.0,
                             Price = 100.0,
                             Price100 = 90.0,
@@ -140,8 +153,10 @@ namespace movieSeller.DataAccess.Migrations
                         {
                             Id = 3,
                             Author = "Billy",
+                            CategoryId = 3,
                             Description = "Movies number 1",
                             ISBN = "121321231d",
+                            ImageURL = "",
                             ListPrice = 99.0,
                             Price = 90.0,
                             Price100 = 80.0,
@@ -152,14 +167,27 @@ namespace movieSeller.DataAccess.Migrations
                         {
                             Id = 4,
                             Author = "SomeOnr",
+                            CategoryId = 3,
                             Description = "Movies number 2",
                             ISBN = "121321231d",
+                            ImageURL = "",
                             ListPrice = 109.0,
                             Price = 100.0,
                             Price100 = 90.0,
                             Price50 = 95.0,
                             Title = "HariHari"
                         });
+                });
+
+            modelBuilder.Entity("movieSeller.Models.Models.Product", b =>
+                {
+                    b.HasOne("movieSeller.Models.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

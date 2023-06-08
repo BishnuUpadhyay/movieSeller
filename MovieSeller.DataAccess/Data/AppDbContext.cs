@@ -22,10 +22,10 @@ namespace movieSeller.DataAccess.Data
                    new Category { Id = 4, Name = "new", DisplayOrder = 4 }
                 );
             modelBuilder.Entity<Product>().HasData(
-    new Product { Id = 1, Title = "Fortune of Time", Author = "Billy", Description = "Movies number 1", ISBN = "121321231d", ListPrice = 99, Price = 90, Price50 = 85, Price100 = 80 },
-     new Product { Id = 2, Title = "HariHari", Author = "SomeOnr", Description = "Movies number 2", ISBN = "121321231d", ListPrice = 109, Price = 100, Price50 = 95, Price100 = 90 },
-         new Product { Id = 3, Title = "Fortune of Time", Author = "Billy", Description = "Movies number 1", ISBN = "121321231d", ListPrice = 99, Price = 90, Price50 = 85, Price100 = 80 },
-     new Product { Id = 4, Title = "HariHari", Author = "SomeOnr", Description = "Movies number 2", ISBN = "121321231d", ListPrice = 109, Price = 100, Price50 = 95, Price100 = 90 }
+    new Product { Id = 1, Title = "Fortune of Time", Author = "Billy", Description = "Movies number 1", ISBN = "121321231d", ListPrice = 99, Price = 90, Price50 = 85, Price100 = 80 , CategoryId=3, ImageURL ="" },
+     new Product { Id = 2, Title = "HariHari", Author = "SomeOnr", Description = "Movies number 2", ISBN = "121321231d", ListPrice = 109, Price = 100, Price50 = 95, Price100 = 90, CategoryId = 3, ImageURL = "" },
+         new Product { Id = 3, Title = "Fortune of Time", Author = "Billy", Description = "Movies number 1", ISBN = "121321231d", ListPrice = 99, Price = 90, Price50 = 85, Price100 = 80, CategoryId = 3, ImageURL = "" },
+     new Product { Id = 4, Title = "HariHari", Author = "SomeOnr", Description = "Movies number 2", ISBN = "121321231d", ListPrice = 109, Price = 100, Price50 = 95, Price100 = 90, CategoryId = 3, ImageURL = "" }
     );
         }
     }
